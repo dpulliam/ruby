@@ -3022,6 +3022,15 @@ rb_reg_match_m(int argc, VALUE *argv, VALUE re)
  *    r2 = Regexp.new('cat', true)     #=> /cat/i
  *    r3 = Regexp.new(r2)              #=> /cat/i
  *    r4 = Regexp.new('dog', Regexp::EXTENDED | Regexp::IGNORECASE) #=> /dog/ix
+ *    r5 = Regexp.new('fish', Regexp::IGNORECASE, 'utf8') #=> /fish/i
+ *
+ *  The last example with +r5+ will result in a warning due to $KCODE being
+ *  deprecated in ruby 1.9.
+ *
+ *    irb(main):001:0> r5 = Regexp.new('fish', Regexp::IGNORECASE, 'utf8')
+ *    (irb):1: warning: encoding option is ignored - utf8
+ *    => /fish/i
+ *
  */
 
 static VALUE
