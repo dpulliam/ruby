@@ -2157,6 +2157,13 @@ num_step_size(VALUE from, VALUE args, VALUE eobj)
  *
  *	n = (limit - num)/step
  *
+ *  If any of the arguments are strings, an ArgumentError or TypeError will be thrown. See the following examples to know when each error will be thrown.
+ *
+ *  String as the last argument:
+ *      irb(main):001:0> 1.1.step(5.1, "1") {} #=> ArgumentError: comparison of String with 0 failed
+ *  String as the first argument:
+ *      irb(main):002:0> 1.1.step("5.1", 1) {} #=> TypeError: no implicit conversion to float from string
+ *
  *  Otherwise, the loop starts at +num+, uses either the less-than (<) or
  *  greater-than (>) operator to compare the counter against +limit+, and
  *  increments itself using the <code>+</code> operator.
